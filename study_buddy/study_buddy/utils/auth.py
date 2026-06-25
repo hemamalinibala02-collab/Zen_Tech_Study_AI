@@ -1,50 +1,52 @@
-"""Auth helpers using passlib bcrypt + JSON storage."""
-from passlib.hash import bcrypt
+import requests
 import streamlit as st
-from .file_db import load, save, next_id
 
+API_URL = "http://localhost:8000"  # change in production
 
 def register(name, email, password):
-    email = email.strip().lower()
-    if not name or not email or not password:
-        return False, "All fields are required."
-    users = load("users")
-    if any(u["email"] == email for u in users):
-        return False, "Email already registered."
-    users.append({
-        "id": next_id(users),
-        "name": name.strip(),
-        "email": email,
-        "password": bcrypt.hash(password),
-        "theme": "Light",
-    })
-    save("users", users)
-    return True, "Account created. Please log in."
+    try:
+        res = requests.post(
+            f"{API_URL}/auth/register",
+            json={
+                "email": email,
+                "username": name,
+                "password": password
+            }
+        )
+
+        if res.status_code == 200:
+            return True, "Account created successfully"
+        return False, res.json().get("detail", "Registration failed")
+
+    except Exception as e:
+        return False, str(e)
 
 
 def login(email, password):
-    email = email.strip().lower()
-    users = load("users")
-    for u in users:
-        if u["email"] == email:
-            try:
-                if bcrypt.verify(password, u["password"]):
-                    st.session_state["user"] = {"id": u["id"], "name": u["name"], "email": u["email"]}
-                    return True, "Welcome back!"
-            except Exception:
-                return False, "Invalid credentials."
-    return False, "Invalid email or password."
+    try:
+        res = requests.post(
+            f"{API_URL}/auth/login",
+            data={
+                "username": email,
+                "password": password
+            }
+        )
+
+        if res.status_code == 200:
+            data = res.json()
+            st.session_state["token"] = data["access_token"]
+            st.session_state["user"] = email
+            return True, "Login successful"
+
+        return False, res.json().get("detail", "Invalid credentials")
+
+    except Exception as e:
+        return False, str(e)
 
 
 def logout():
-    st.session_state.pop("user", None)
+    st.session_state.clear()
 
 
 def current_user():
     return st.session_state.get("user")
-
-
-def require_login():
-    if not current_user():
-        st.warning("Please log in from the home page to continue.")
-        st.stop()
