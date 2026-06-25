@@ -1,5 +1,4 @@
 import streamlit as st
-from utils.auth import require_login, current_user
 from utils.ocr_utils import extract_text
 from utils.file_db import load, save, next_id
 
