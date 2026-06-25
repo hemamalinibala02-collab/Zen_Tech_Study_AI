@@ -5,8 +5,7 @@ from utils.auth import require_login, current_user
 from utils.file_db import load
 
 st.set_page_config(page_title="Analytics", page_icon="📊", layout="wide")
-require_login()
-u = current_user()
+
 
 st.title("📊 Analytics")
 
