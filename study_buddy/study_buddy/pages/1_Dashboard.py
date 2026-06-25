@@ -4,8 +4,7 @@ from utils.auth import require_login, current_user
 from utils.file_db import load
 
 st.set_page_config(page_title="Dashboard", page_icon="🏠", layout="wide")
-require_login()
-u = current_user()
+
 
 tasks = [t for t in load("tasks") if t.get("user_id") == u["id"]]
 notes = [n for n in load("notes") if n.get("user_id") == u["id"]]
