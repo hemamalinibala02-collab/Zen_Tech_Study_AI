@@ -5,8 +5,7 @@ from utils.export_utils import export_notes_txt, export_tasks_csv, export_report
 from utils.prediction_utils import compute
 
 st.set_page_config(page_title="Settings", page_icon="⚙️", layout="wide")
-require_login()
-u = current_user()
+
 
 st.title("⚙️ Settings & Export")
 
