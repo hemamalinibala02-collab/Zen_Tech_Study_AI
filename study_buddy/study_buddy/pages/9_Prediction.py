@@ -3,8 +3,6 @@ from utils.auth import require_login, current_user
 from utils.prediction_utils import compute
 
 st.set_page_config(page_title="Prediction", page_icon="🔮", layout="wide")
-require_login()
-u = current_user()
 
 st.title("🔮 Performance Prediction")
 r = compute(u["id"])
