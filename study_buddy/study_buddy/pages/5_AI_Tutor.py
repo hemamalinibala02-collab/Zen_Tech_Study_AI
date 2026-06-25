@@ -1,5 +1,4 @@
 import streamlit as st
-from utils.auth import require_login
 from utils.ai_utils import ask_ai, has_api_key
 
 st.set_page_config(page_title="AI Tutor", page_icon="🤖", layout="wide")
