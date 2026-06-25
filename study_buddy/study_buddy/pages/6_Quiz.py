@@ -5,8 +5,7 @@ from utils.file_db import load, save, next_id
 from utils.quiz_utils import generate_quiz, grade
 
 st.set_page_config(page_title="Quiz", page_icon="🧠", layout="wide")
-require_login()
-u = current_user()
+
 
 st.title("🧠 Quiz Generator")
 
