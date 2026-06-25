@@ -1,0 +1,11 @@
+[
+  {
+    "id": 1,
+    "user_id": 1,
+    "title": "exam",
+    "subject": "maths",
+    "deadline": "2026-06-24",
+    "priority": "Medium",
+    "done": false
+  }
+]
