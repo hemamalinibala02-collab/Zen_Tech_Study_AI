@@ -1,7 +1,8 @@
 import requests
 import streamlit as st
 
-API_URL = "http://localhost:8000"  # change in production
+API_URL = "https://YOUR-RENDER-URL.onrender.com"
+
 
 def register(name, email, password):
     try:
@@ -16,6 +17,7 @@ def register(name, email, password):
 
         if res.status_code == 200:
             return True, "Account created successfully"
+
         return False, res.json().get("detail", "Registration failed")
 
     except Exception as e:
@@ -33,8 +35,8 @@ def login(email, password):
         )
 
         if res.status_code == 200:
-            data = res.json()
-            st.session_state["token"] = data["access_token"]
+            token = res.json()["access_token"]
+            st.session_state["token"] = token
             st.session_state["user"] = email
             return True, "Login successful"
 
