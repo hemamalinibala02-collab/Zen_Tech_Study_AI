@@ -18,6 +18,7 @@ if img:
     subject = st.text_input("Subject", value="")
     if st.button("💾 Save as note"):
         notes = load("notes")
+        USER_ID="default_user"
         notes.append({"id": next_id(notes), "user_id": USER_ID,
                       "title": title, "subject": subject, "content": edited, "file": None})
         save("notes", notes)
