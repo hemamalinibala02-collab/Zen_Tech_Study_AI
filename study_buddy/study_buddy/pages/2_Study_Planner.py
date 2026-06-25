@@ -4,8 +4,7 @@ from utils.auth import require_login, current_user
 from utils.file_db import load, save, next_id
 
 st.set_page_config(page_title="Study Planner", page_icon="🗓️", layout="wide")
-require_login()
-u = current_user()
+
 
 st.title("🗓️ Study Planner")
 
