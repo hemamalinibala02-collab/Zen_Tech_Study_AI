@@ -4,8 +4,7 @@ from utils.ocr_utils import extract_text
 from utils.file_db import load, save, next_id
 
 st.set_page_config(page_title="OCR Scanner", page_icon="🔍", layout="wide")
-require_login()
-u = current_user()
+
 
 st.title("🔍 OCR Notes Scanner")
 st.caption("Upload a photo of handwritten or printed notes to extract text.")
