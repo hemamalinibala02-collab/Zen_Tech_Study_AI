@@ -3,7 +3,7 @@ from utils.auth import require_login
 from utils.ai_utils import ask_ai, has_api_key
 
 st.set_page_config(page_title="AI Tutor", page_icon="🤖", layout="wide")
-require_login()
+
 
 st.title("🤖 AI Tutor")
 if not has_api_key():
