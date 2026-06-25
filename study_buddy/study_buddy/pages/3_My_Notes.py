@@ -1,6 +1,5 @@
 import streamlit as st
 from pathlib import Path
-from utils.auth import require_login, current_user
 from utils.file_db import load, save, next_id, UPLOADS
 
 st.set_page_config(page_title="My Notes", page_icon="📝", layout="wide")
