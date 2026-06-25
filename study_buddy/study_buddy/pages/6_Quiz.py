@@ -1,6 +1,5 @@
 import streamlit as st
 from datetime import datetime
-from utils.auth import require_login, current_user
 from utils.file_db import load, save, next_id
 from utils.quiz_utils import generate_quiz, grade
 
