@@ -1,5 +1,4 @@
 import streamlit as st
-from utils.auth import require_login, current_user
 from utils.file_db import load, save
 from utils.export_utils import export_notes_txt, export_tasks_csv, export_report_pdf
 from utils.prediction_utils import compute
